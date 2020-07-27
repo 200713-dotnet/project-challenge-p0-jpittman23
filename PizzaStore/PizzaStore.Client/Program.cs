@@ -14,12 +14,18 @@ namespace PizzaStore.Client
         static void Welcome()
         {
             System.Console.WriteLine("Welcome to the Pizza Zone - Home of the best pizza ever made");
-            System.Console.WriteLine("Please make a selection");
+            System.Console.WriteLine("Please selet which store to use:");
+            System.Console.WriteLine("1 for Pizza Zone on 10th");
+            System.Console.WriteLine("2 for Pizza Zone on 5th");
+            int selection;
+            int.TryParse(System.Console.ReadLine(), out selection);
+            var store = new Store(selection);
+            System.Console.WriteLine(store.Name);
             System.Console.WriteLine();
             List<Pizza> cart = new List<Pizza>();
             var startup = new PizzaStore.Client.Startup();
             var u = new User();
-            var store = new Store();
+            
             try
             {
                 Menu(startup.CreateOrder(u , store));
@@ -75,6 +81,7 @@ namespace PizzaStore.Client
                         break;
                     case 3:
                         t = new Toppings(select);
+                        System.Console.WriteLine(t._toppings);
                         cart.CreatePizza(s._size, c._crust, t._toppings);
                         System.Console.WriteLine("Hawaiian pizza added to cart");
                         System.Console.WriteLine();

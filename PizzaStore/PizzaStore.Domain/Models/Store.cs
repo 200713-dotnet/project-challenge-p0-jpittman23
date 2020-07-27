@@ -5,11 +5,22 @@ namespace PizzaStore.Domain.Models
     public class Store
     {
         public List<Order> Orders { get; }
-        public string Name { get; set; }
+        public string Name { get; }
 
-        public Store()
+        public Store(int selection)
         {
-            Orders = new List<Order>();
+            switch(selection)
+            {
+                case 1:
+                    Orders = new List<Order>();
+                    Name = "Pizza Zone on 10th";
+                    break;
+                case 2:
+                    Orders = new List<Order>();
+                    Name = "Pizza Zone on 5th";
+                    break;
+            }
+
         }
 
         // public Order CreateOrder()
