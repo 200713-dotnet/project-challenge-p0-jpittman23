@@ -8,9 +8,10 @@ namespace PizzaStore.Domain.Models
         public List<Pizza> Pizzalist { get; }
         public DateTime DateOrdered { get; set; }
 
-        public void CreatePizza(string s, string c, string t)
+        public void CreatePizza(string s, string c, List<Toppings> t)
         {
-            Pizzalist.Add(new Pizza(c,s,t));
+            var pizza = new Pizza(c,s,t);
+            Pizzalist.Add(pizza);
             System.Console.WriteLine("Pizza added to your order");
         }
         public Order()
