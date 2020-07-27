@@ -5,11 +5,13 @@ namespace PizzaStore.Domain.Models
 {
     public class Pizza
     {
+
+        private List<Toppings> _toppings = new List<Toppings>();
         public List<Toppings> toppings
         {
             get
             {
-                return toppings;
+                return _toppings;
             }
         }
         public Crust crust { get; }
@@ -32,10 +34,10 @@ namespace PizzaStore.Domain.Models
         }
 
 
-        public Pizza(string c, string s, List<Toppings> t)
+        public Pizza(Crust c, Size s, List<Toppings> t)
         {
-            crust._crust = c;
-            size._size = s;
+            crust = c;
+            size = s;
             toppings.AddRange(t);
         }
 

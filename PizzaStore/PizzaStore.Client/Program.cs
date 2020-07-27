@@ -69,25 +69,25 @@ namespace PizzaStore.Client
                 {
                     case 1:
                         var t = new Toppings(select);
-                        cart.CreatePizza(s._size, c._crust, new List<Toppings>{t});
+                        cart.CreatePizza(s, c, new List<Toppings>{t});
                         System.Console.WriteLine("Cheese pizza added to cart");
                         System.Console.WriteLine();
                         break;
                     case 2:
                         t = new Toppings(select);
-                        cart.CreatePizza(s._size, c._crust, new List<Toppings>{t});
+                        cart.CreatePizza(s, c, new List<Toppings>{t});
                         System.Console.WriteLine("Pepperoni pizza added to cart");
                         System.Console.WriteLine();
                         break;
                     case 3:
                         t = new Toppings(select);
-                        cart.CreatePizza(s._size, c._crust, new List<Toppings>{t});
+                        cart.CreatePizza(s, c, new List<Toppings>{t});
                         System.Console.WriteLine("Hawaiian pizza added to cart");
                         System.Console.WriteLine();
                         break;
                     case 4:
                         t = new Toppings(select);
-                        cart.CreatePizza(s._size, c._crust, new List<Toppings>{t});
+                        cart.CreatePizza(s, c, new List<Toppings>{t});
                         System.Console.WriteLine("Custom pizza added to cart");
                         System.Console.WriteLine();
                         break;
@@ -117,4 +117,3 @@ namespace PizzaStore.Client
         }
     }
 }
-
