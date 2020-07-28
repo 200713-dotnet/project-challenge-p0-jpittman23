@@ -4,10 +4,10 @@ namespace PizzaStore.Domain.Models
     {
         public string _crust;
 
-        public Crust(string curst)
+        public Crust(string crust)
         {
             int choice;
-            int.TryParse(curst, out choice);
+            int.TryParse(crust, out choice);
             if(choice == 1)
             {
                 _crust = "regular crust";

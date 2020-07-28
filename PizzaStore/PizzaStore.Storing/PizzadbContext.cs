@@ -27,7 +27,7 @@ namespace PizzaStore.Storing
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("server=localhost;database=Pizzadb;user id=sa;password=Jocelynn23");
             }
         }
@@ -60,7 +60,7 @@ namespace PizzaStore.Storing
                 entity.HasOne(d => d.Crust)
                     .WithMany(p => p.Pizza)
                     .HasForeignKey(d => d.CrustId)
-                    .HasConstraintName("FK__Pizza__CrustId__3C69FB99");
+                    .HasConstraintName("FK_CrustId");
 
                 entity.HasOne(d => d.Size)
                     .WithMany(p => p.Pizza)
@@ -73,6 +73,8 @@ namespace PizzaStore.Storing
                 entity.HasNoKey();
 
                 entity.ToTable("PizzaTopping", "Pizzas");
+
+                entity.Property(e => e.PizzaToppingId).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.Pizza)
                     .WithMany()
@@ -90,8 +92,6 @@ namespace PizzaStore.Storing
             {
                 entity.ToTable("Size", "Pizzas");
 
-                entity.Property(e => e.SizeId).ValueGeneratedNever();
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(100);
@@ -101,8 +101,6 @@ namespace PizzaStore.Storing
             {
                 entity.ToTable("Store", "Pizzas");
 
-                entity.Property(e => e.Storeid).ValueGeneratedNever();
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(250);
@@ -111,8 +109,6 @@ namespace PizzaStore.Storing
             modelBuilder.Entity<Topping>(entity =>
             {
                 entity.ToTable("Topping", "Pizzas");
-
-                entity.Property(e => e.ToppingId).ValueGeneratedNever();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -125,8 +121,6 @@ namespace PizzaStore.Storing
                     .HasName("PK_UsersID");
 
                 entity.ToTable("Users", "Pizzas");
-
-                entity.Property(e => e.UserId).ValueGeneratedNever();
 
                 entity.Property(e => e.Name)
                     .IsRequired()

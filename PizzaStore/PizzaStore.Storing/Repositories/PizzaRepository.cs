@@ -12,34 +12,31 @@ namespace PizzaStore.Storing.Repositories
 
             var newPizza = new Pizza();
 
-            newPizza.Crust = new Crust();
-            newPizza.Size = new Size();
+            newPizza.Crust = new Crust(){Name = pizza.crust._crust};
+            newPizza.Size = new Size(){Name = pizza.size._size};
             newPizza.Name = pizza.Name;
 
-            foreach (var t in pizza.toppings)
-            {
-                var toppings = new Topping() {Name = t.Name};
-                var pizzaTopping = new PizzaTopping() {Pizza = newPizza, Topping = toppings};
-            }
+            // foreach (var t in pizza.toppings)
+            // {
+            //     var topping = new Topping() {Name = t.Name};
+            //     var pizzaToppings = new PizzaTopping() { Topping = topping};
+            //     topping.PizzaTopping.Add(pizzaToppings);
+            // }
             
-
             db.Pizza.Add(newPizza);
             db.SaveChanges();
         }
 
-        public List<domain.Pizza> ReadAll()
+        public List<domain.Pizza> ReadAll(string answer, string Answer)
         {
             var domainPizzaList = new List<domain.Pizza>();
-
-            var query = from p in db.Pizza
-                        select p;
             
             foreach(var item in db.Pizza.ToList())
             {
                 domainPizzaList.Add(new domain.Pizza()
                 {
-                    crust = new domain.Crust("Regular") { Name = item.Crust.Name},
-                    size = new domain.Size("Medium") {Name = item.Size.Name},
+                    crust = new domain.Crust(answer) { Name = item.Crust.Name},
+                    size = new domain.Size(Answer) {Name = item.Size.Name},
                 });
             };
 

@@ -13,7 +13,7 @@ go
 create table Pizzas.Pizza
 (
     PizzaId int not null identity(1,1),
-    CrustId int null foreign key references Pizzas.Crust(CrustId),
+    CrustId int null,
     SizeId int null,
     [Name] nvarchar(250) not null,
     DateModified datetime2(0) not null,
@@ -28,21 +28,21 @@ create table Pizzas.Crust
     CrustId int not null IDENTITY(1,1),
     [Name] nvarchar(100) not null,
     IsValid bit not null,
-    constraint PK_CrustID primary key (CrustId)
+    constraint PK_CrustId primary key (CrustId)
     
 );
 
 create table Pizzas.Size
 (
-    SizeId int not null,
+    SizeId int not null IDENTITY(1,1),
     [Name] nvarchar(100) not null,
     IsValid bit not null,
-    constraint PK_SizeID primary key (SizeId)
+    constraint PK_SizeId primary key (SizeId)
 );
 
 create table Pizzas.Topping
 (
-    ToppingId int not null,
+    ToppingId int not null identity(1,1),
     [Name] nvarchar(250) not null,
     IsValid bit not null,
     constraint PK_ToppingID primary key (ToppingId),
@@ -50,7 +50,7 @@ create table Pizzas.Topping
 
 create table Pizzas.PizzaTopping
 (
-    PizzaToppingId int not null,
+    PizzaToppingId int not null IDENTITY(1,1),
     PizzaId int not null,
     ToppingId int,
     IsValid bit not null,
@@ -60,7 +60,7 @@ create table Pizzas.PizzaTopping
 
 create table Pizzas.Users
 (
-    UserId int not null,
+    UserId int not null identity(1,1),
     [Name] nvarchar(250) not null,
     IsValid bit not null,
     constraint PK_UsersID primary key (UserId)
@@ -68,13 +68,9 @@ create table Pizzas.Users
 
 create table Pizzas.Store
 (
-    Storeid int not null,
+    Storeid int not null IDENTITY(1,1),
     [Name] nvarchar(250) not null,
     IsValid bit not null,
     constraint PK_StoreID primary key (StoreId)
 );
 go
-
-alter table Pizzas.Pizza
-    drop constraint FK_CrustId;
-GO

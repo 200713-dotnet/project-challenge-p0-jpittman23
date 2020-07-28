@@ -26,14 +26,14 @@ namespace PizzaStore.Client
             List<Pizza> cart = new List<Pizza>();
             var startup = new PizzaStore.Client.Startup();
             var u = new User();
-            
+
             try
             {
-                Menu(startup.CreateOrder(u , store));
+                Menu(startup.CreateOrder(u, store));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-               System.Console.WriteLine(ex.Message);
+                System.Console.WriteLine(ex.Message);
             }
         }
         static void Menu(Order cart)
@@ -41,12 +41,16 @@ namespace PizzaStore.Client
             var exit = false;
             var pr = new PizzaRepository();
 
-            System.Console.WriteLine("Please select which size you would like:");
+
+            do
+            {
+             System.Console.WriteLine("Please select which size you would like:");
             System.Console.WriteLine("1 for small");
             System.Console.WriteLine("2 for medium");
             System.Console.WriteLine("3 for large");
             System.Console.WriteLine("");
-            var s = new Size(Console.ReadLine());
+            var Answer = Console.ReadLine();
+            var s = new Size(Answer);
             System.Console.WriteLine(s._size);
             System.Console.WriteLine("");
 
@@ -55,12 +59,11 @@ namespace PizzaStore.Client
             System.Console.WriteLine("2 for stuffed crust");
             System.Console.WriteLine("3 for thin crust");
             System.Console.WriteLine("");
-            var c = new Crust(Console.ReadLine());
+            var answer = Console.ReadLine();
+            var c = new Crust(answer);
             System.Console.WriteLine(c._crust);
             System.Console.WriteLine("");
 
-            do
-            {
                 Startup.PrintMenu();
 
                 int select;
@@ -70,25 +73,24 @@ namespace PizzaStore.Client
                 switch (select)
                 {
                     case 1:
-                        var pizza = new Pizza()
+                        var pizzas = new Pizza()
                         {
                             Name = "Extra Cheese Pizza",
-                            crust = c,
-                            size = s,
-                            toppings = new List<Toppings>() {new Toppings(select) {Name = "Cheese"}}
+                            crust = new Crust(answer) { Name = c._crust },
+                            size = new Size(Answer) { Name = s._size },
+                            // toppings = new List<Toppings>() {new Toppings(select) {Name = "Cheese"}}
                         };
-                        pr.Create(pizza);
-                        System.Console.ReadLine();
+                        pr.Create(pizzas);
                         System.Console.WriteLine("Cheese pizza added to cart");
                         System.Console.WriteLine();
                         break;
                     case 2:
-                        pizza = new Pizza()
+                        var pizza = new Pizza()
                         {
                             Name = "Pepperoni Pizza",
-                            crust = c,
-                            size = s,
-                            toppings = new List<Toppings>() {new Toppings(select) {Name = "Pepperoni"}}
+                            crust = new Crust(answer) { Name = c._crust },
+                            size = new Size(Answer) { Name = s._size },
+                            //toppings = new List<Toppings>() {new Toppings(select) {Name = "Pepperoni"}}
                         };
                         System.Console.WriteLine("Pepperoni pizza added to cart");
                         System.Console.WriteLine();
@@ -97,9 +99,9 @@ namespace PizzaStore.Client
                         pizza = new Pizza()
                         {
                             Name = "Hawaiian Pizza",
-                            crust = c,
-                            size = s,
-                            toppings = new List<Toppings>() {new Toppings(select) {Name = "Ham,Pineapple"}}
+                            crust = new Crust(answer) { Name = c._crust },
+                            size = new Size(Answer) { Name = s._size },
+                            toppings = new List<Toppings>() { new Toppings(select) { Name = "Ham,Pineapple" } }
                         };
                         System.Console.WriteLine("Hawaiian pizza added to cart");
                         System.Console.WriteLine();
@@ -108,24 +110,20 @@ namespace PizzaStore.Client
                         pizza = new Pizza()
                         {
                             Name = "Sausage Pizza",
-                            crust = c,
-                            size = s,
-                            toppings = new List<Toppings>() {new Toppings(select) {Name = "Sausage"}}
+                            crust = new Crust(answer) { Name = c._crust },
+                            size = new Size(Answer) { Name = s._size },
+                            toppings = new List<Toppings>() { new Toppings(select) { Name = "Sausage" } }
                         };
                         System.Console.WriteLine("Sausage pizza added to cart");
                         System.Console.WriteLine();
                         break;
                     case 5:
-                        // var fmr = new FileManager();
-                        // System.Console.WriteLine("Here are the items in your cart:");
-                        foreach (var item in pr.ReadAll())
+                        foreach (var item in pr.ReadAll(answer,Answer))
                         {
                             System.Console.WriteLine(item);
                         }
                         break;
                     case 6:
-                        //var fmw = new FileManager();
-                        //fmw.Write(cart);
                         System.Console.WriteLine("Proceed to checkout");
                         System.Console.WriteLine();
                         exit = true;

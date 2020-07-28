@@ -15,14 +15,6 @@ namespace PizzaStore.Domain.Models
             return $"{Name} {crust.Name} {size.Name}";
         }
 
-
-        public Pizza(Crust c, Size s, List<Toppings> t)
-        {
-            crust = c;
-            size = s;
-            toppings.AddRange(t);
-        }
-
         public Pizza()
         {
         }
