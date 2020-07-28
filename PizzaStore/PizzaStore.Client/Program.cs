@@ -70,8 +70,6 @@ namespace PizzaStore.Client
                 switch (select)
                 {
                     case 1:
-                        var t = new Toppings(select);
-                        System.Console.WriteLine(t._toppings);
                         var pizza = new Pizza()
                         {
                             Name = "Extra Cheese Pizza",
@@ -85,8 +83,6 @@ namespace PizzaStore.Client
                         System.Console.WriteLine();
                         break;
                     case 2:
-                        t = new Toppings(select);
-                        System.Console.WriteLine(t._toppings);
                         pizza = new Pizza()
                         {
                             Name = "Pepperoni Pizza",
@@ -98,8 +94,6 @@ namespace PizzaStore.Client
                         System.Console.WriteLine();
                         break;
                     case 3:
-                        t = new Toppings(select);
-                        System.Console.WriteLine(t._toppings);
                         pizza = new Pizza()
                         {
                             Name = "Hawaiian Pizza",
@@ -111,8 +105,6 @@ namespace PizzaStore.Client
                         System.Console.WriteLine();
                         break;
                     case 4:
-                        t = new Toppings(select);
-                        System.Console.WriteLine(t._toppings);
                         pizza = new Pizza()
                         {
                             Name = "Sausage Pizza",
