@@ -1,25 +1,26 @@
 namespace PizzaStore.Domain.Models
 {
-    public class Toppings
+    public class Toppings : Acomp
     {
         public string _toppings;
         public Toppings(int choice)
         {
-            if (choice == 1)
+            switch (choice)
             {
-                _toppings = "Cheese";
-            }
-            else if (choice == 2)
-            {
-                _toppings = "Pepperoni";
-            }
-            else if (choice == 3)
-            {
-                _toppings = "Hawiian";
-            }
-            else
-            {
-                System.Console.WriteLine("Please make a valid selection");
+                case 1:
+                    _toppings = "Cheese";
+                    break;
+            
+                case 2:
+                    _toppings = "Pepperoni";
+                    break;
+            
+                case 3:
+                    _toppings = "Hawiian";
+                    break;
+                default:
+                    System.Console.WriteLine("Please make a valid selection");
+                    break;
             }
         }
     }

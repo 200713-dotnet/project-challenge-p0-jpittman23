@@ -1,8 +1,9 @@
 namespace PizzaStore.Domain.Models
 {
-    public class Crust
+    public class Crust : Acomp
     {
         public string _crust;
+
         public Crust(string curst)
         {
             int choice;

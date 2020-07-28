@@ -30,6 +30,7 @@ namespace PizzaStore.Client
 
         internal static void PrintMenu()
         {
+            System.Console.WriteLine("Which Pizza would you like?");
             System.Console.WriteLine("Select 1 for Cheese");
             System.Console.WriteLine("Select 2 for pepperoni");
             System.Console.WriteLine("Select 3 for Hawaiian");

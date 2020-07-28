@@ -5,32 +5,14 @@ namespace PizzaStore.Domain.Models
 {
     public class Pizza
     {
-
-        private List<Toppings> _toppings = new List<Toppings>();
-        public List<Toppings> toppings
-        {
-            get
-            {
-                return _toppings;
-            }
-        }
-        public Crust crust { get; }
-        public Size size { get; }
-
-        void AddToppings(Toppings topping)
-        {
-            toppings.Add(topping);
-        }
+        public string Name { get; set; }
+        public List<Toppings> toppings { get; set;}
+        public Crust crust { get; set; }
+        public Size size { get; set; }
 
         public override string ToString()
         {
-            var sb = new StringBuilder();
-            foreach(var t in toppings)
-            {
-                sb.Append(t);
-            }
-
-             return $"{size} {crust} {sb}";
+            return $"{Name} {crust.Name} {size.Name}";
         }
 
 
@@ -43,7 +25,6 @@ namespace PizzaStore.Domain.Models
 
         public Pizza()
         {
-            
         }
     }
 }

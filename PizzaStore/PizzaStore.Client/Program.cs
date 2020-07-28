@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using PizzaStore.Domain.Models;
+using PizzaStore.Storing.Repositories;
 
 namespace PizzaStore.Client
 {
@@ -38,6 +39,7 @@ namespace PizzaStore.Client
         static void Menu(Order cart)
         {
             var exit = false;
+            var pr = new PizzaRepository();
 
             System.Console.WriteLine("Please select which size you would like:");
             System.Console.WriteLine("1 for small");
@@ -69,37 +71,69 @@ namespace PizzaStore.Client
                 {
                     case 1:
                         var t = new Toppings(select);
-                        cart.CreatePizza(s, c, new List<Toppings>{t});
+                        System.Console.WriteLine(t._toppings);
+                        var pizza = new Pizza()
+                        {
+                            Name = "Extra Cheese Pizza",
+                            crust = c,
+                            size = s,
+                            toppings = new List<Toppings>() {new Toppings(select) {Name = "Cheese"}}
+                        };
+                        pr.Create(pizza);
+                        System.Console.ReadLine();
                         System.Console.WriteLine("Cheese pizza added to cart");
                         System.Console.WriteLine();
                         break;
                     case 2:
                         t = new Toppings(select);
-                        cart.CreatePizza(s, c, new List<Toppings>{t});
+                        System.Console.WriteLine(t._toppings);
+                        pizza = new Pizza()
+                        {
+                            Name = "Pepperoni Pizza",
+                            crust = c,
+                            size = s,
+                            toppings = new List<Toppings>() {new Toppings(select) {Name = "Pepperoni"}}
+                        };
                         System.Console.WriteLine("Pepperoni pizza added to cart");
                         System.Console.WriteLine();
                         break;
                     case 3:
                         t = new Toppings(select);
-                        cart.CreatePizza(s, c, new List<Toppings>{t});
+                        System.Console.WriteLine(t._toppings);
+                        pizza = new Pizza()
+                        {
+                            Name = "Hawaiian Pizza",
+                            crust = c,
+                            size = s,
+                            toppings = new List<Toppings>() {new Toppings(select) {Name = "Ham,Pineapple"}}
+                        };
                         System.Console.WriteLine("Hawaiian pizza added to cart");
                         System.Console.WriteLine();
                         break;
                     case 4:
                         t = new Toppings(select);
-                        cart.CreatePizza(s, c, new List<Toppings>{t});
-                        System.Console.WriteLine("Custom pizza added to cart");
+                        System.Console.WriteLine(t._toppings);
+                        pizza = new Pizza()
+                        {
+                            Name = "Sausage Pizza",
+                            crust = c,
+                            size = s,
+                            toppings = new List<Toppings>() {new Toppings(select) {Name = "Sausage"}}
+                        };
+                        System.Console.WriteLine("Sausage pizza added to cart");
                         System.Console.WriteLine();
                         break;
                     case 5:
-                        var fmr = new FileManager();
-                        System.Console.WriteLine("Here are the items in your cart:");
-                        DisplayCart(fmr.Read());
-                        System.Console.WriteLine();
+                        // var fmr = new FileManager();
+                        // System.Console.WriteLine("Here are the items in your cart:");
+                        foreach (var item in pr.ReadAll())
+                        {
+                            System.Console.WriteLine(item);
+                        }
                         break;
                     case 6:
-                        var fmw = new FileManager();
-                        fmw.Write(cart);
+                        //var fmw = new FileManager();
+                        //fmw.Write(cart);
                         System.Console.WriteLine("Proceed to checkout");
                         System.Console.WriteLine();
                         exit = true;
@@ -110,7 +144,7 @@ namespace PizzaStore.Client
         }
         static void DisplayCart(Order cart)
         {
-            foreach (var pizza in cart.Pizzalist)
+            foreach (var pizza in cart.Pizza)
             {
                 System.Console.WriteLine(pizza);
             }
