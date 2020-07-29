@@ -5,4 +5,4 @@ select * from Pizzas.Pizza
 
 delete pp
 from Pizzas.Pizza as pp
-where Name = 'Pepperoni Pizza'
+where Name = 'Extra Cheese Pizza'
