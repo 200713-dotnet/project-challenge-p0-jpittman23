@@ -16,12 +16,6 @@ namespace PizzaStore.Storing.Repositories
             newPizza.Size = new Size(){Name = pizza.size._size};
             newPizza.Name = pizza.Name;
 
-            // foreach (var t in pizza.toppings)
-            // {
-            //     var topping = new Topping() {Name = t.Name};
-            //     var pizzaToppings = new PizzaTopping() { Topping = topping};
-            //     topping.PizzaTopping.Add(pizzaToppings);
-            // }
             
             db.Pizza.Add(newPizza);
             db.SaveChanges();

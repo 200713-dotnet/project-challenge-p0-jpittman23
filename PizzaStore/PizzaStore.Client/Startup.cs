@@ -36,7 +36,6 @@ namespace PizzaStore.Client
             System.Console.WriteLine("Select 3 for Hawaiian");
             System.Console.WriteLine("Select 4 for Sausage");
             System.Console.WriteLine("Select 5 for show cart");
-            System.Console.WriteLine("Select 6 for exit");
             System.Console.WriteLine();
         }
     }
